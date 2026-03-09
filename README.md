@@ -62,7 +62,7 @@ Republic of Korea.
 
 ### Flight Paths
 
-![Flight Path Overview](assets/all_path.png)
+![Flight Path Overview](all_path.png)
 
 | Path | Distance | Key Locations |
 |------|----------|---------------|
