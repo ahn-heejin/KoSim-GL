@@ -112,7 +112,7 @@ The dataset is available for download via Google Drive.
 
 | Split | Drone Images | Satellite Images | Link |
 |-------|-------------|-----------------|------|
-| Full Dataset | 2,450,315 | 1,704 | [Google Drive]((https://drive.google.com/file/d/1ETqNb3wSZi64bmX2KV-hp4E9-CfCU8TZ/view?usp=drive_link) |
+| Full Dataset | 2,450,315 | 1,704 | [Google Drive](https://drive.google.com/file/d/1ETqNb3wSZi64bmX2KV-hp4E9-CfCU8TZ/view?usp=drive_link) |
 
 > The full dataset includes both train and test splits in University-1652 format.
 
