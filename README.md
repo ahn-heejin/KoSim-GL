@@ -33,14 +33,16 @@ Republic of Korea.
 
 ## Comparison with Existing Benchmarks
 
-| Dataset | Drone Images | Contiguous Area | Multiple Altitudes | Multiple Scenes | Multi-Scale Satellite | Multi-View |
-|---------|-------------|----------------|-------------------|----------------|----------------------|------------|
-| University-1652 | 37,854 | ✗ | ✓ | ✗ | ✗ | ✗ |
-| SUES-200 | 24,210 | ✗ | ✗ | ✗ | ✗ | ✗ |
-| DenseUAV | 18,198 | ✓ | ✗ | ✗ | ✗ | ✗ |
-| UAV-VisLoc | 6,742 | ✓ | ✗ | ✓ | — | ✗ |
-| GTA-UAV | 33,763 | ✓ | ✓ | ✓ | ✓ | ✗ |
-| **KoSim-GL (Ours)** | **2,450,315** | **✓** | **✓** | **✓** | **✓** | **✓** |
+| | University-1652 | SUES-200 | DenseUAV | UAV-VisLoc | GTA-UAV | **KoSim-GL (Ours)** |
+|---|---|---|---|---|---|---|
+| **Drone images** | 37,854 | 24,210 | 18,198 | 6,742 | 33,763 | **2,450,315** |
+| **Drone-view GPS locations** | Aligned | Aligned | Aligned | — | Arbitrary | **Arbitrary** |
+| **Altitude range** | 121.5–256m | 150–300m | 80–100m | 400–2,000m | 80–650m | **100–600m** |
+| **Contiguous area** | ✗ | ✗ | ✓ | ✓ | ✓ | **✓** |
+| **Multiple altitudes** | ✓ | ✗ | ✗ | ✗ | ✓ | **✓** |
+| **Multiple scenes** | ✗ | ✗ | ✗ | ✓ | ✓ | **✓** |
+| **Multi-scale satellite images** | ✗ | ✗ | ✗ | — | ✓ | **✓** |
+| **Multi-view support** | 1 oblique | 1 oblique | 1 nadir | 1 nadir | 1 nadir | **5 views (1 nadir + 4 oblique)** |
 
 ---
 
@@ -78,31 +80,37 @@ Republic of Korea.
 
 ### Single-View
 
-| Method | Backbone | R@1 | R@5 | R@10 | AP |
-|--------|---------|-----|-----|------|----|
-| FSRA | ResNet-50 | 44.08 | 88.17 | 97.94 | 29.13 |
-| MFRGN | ConvNeXt-Base | 43.64 | 82.44 | 88.91 | 21.77 |
-| LPN | ResNet-50 | 42.74 | 85.49 | 97.60 | 29.00 |
-| MCCG | ConvNeXt-Small | 42.52 | 91.15 | 98.22 | 27.91 |
-| DWDR | ResNet-50 | 41.11 | 88.18 | 97.14 | 27.71 |
-| DAC | ConvNeXt-Base | 42.08 | 87.79 | 93.45 | 22.65 |
-| Sample4Geo | ConvNeXt-Base | 40.56 | 89.37 | 94.16 | 19.37 |
-| MuseNet | ResNet-50 | 40.68 | 86.24 | 95.27 | 26.08 |
-| CVCities | DINOv2-ViT-B/14 | 37.97 | 82.62 | 90.55 | 18.65 |
+| Method | R@1 | R@5 | R@10 | AP |
+|--------|-----|-----|------|----|
+| MuseNet (PR'24) | 40.68 | 86.24 | 95.27 | 26.08 |
+| DWDR (TGRS'24) | 41.11 | 88.18 | 97.14 | 27.71 |
+| LPN (TCSVT'22) | 42.74 | 85.49 | 97.60 | 29.00 |
+| FSRA (TCSVT'21) | **44.08** | 88.17 | 97.94 | 29.13 |
+| CVCities (JSTARS'24) | 37.97 | 82.62 | 90.55 | 18.65 |
+| MCCG (TCSVT'24) | 42.52 | **91.15** | **98.22** | 27.91 |
+| Sample4Geo (ICCV'23) | 35.53 | 82.05 | 91.14 | 20.43 |
+| DAC (TCSVT'24) | 37.11 | 84.82 | 89.38 | 19.42 |
+| CAMP (TGRS'24) | 36.26 | 84.16 | 93.13 | 19.64 |
+| MFRGN (ACM MM'24) | 38.02 | 74.37 | 86.35 | **20.82** |
 
 ### Multi-View
 
-| Method | Backbone | R@1 | R@5 | R@10 | AP |
-|--------|---------|-----|-----|------|----|
-| CAMP | ConvNeXt-Base | 42.16 | 86.13 | 92.40 | 20.42 |
-| FSRA | ResNet-50 | 41.78 | 88.92 | 97.79 | 27.56 |
-| DWDR | ResNet-50 | 41.77 | 83.31 | 95.70 | 27.83 |
-| Sample4Geo | ConvNeXt-Base | 40.42 | 81.69 | 88.18 | 18.39 |
-| CVCities | DINOv2-ViT-B/14 | 39.26 | 85.44 | 93.18 | 19.62 |
-| MFRGN | ConvNeXt-Base | 39.03 | 81.67 | 90.56 | 20.94 |
+| Method | R@1 | R@5 | R@10 | AP |
+|--------|-----|-----|------|----|
+| MuseNet (PR'24) | 64.93 | 95.75 | 99.54 | 36.89 |
+| DWDR (TGRS'24) | 60.38 | 91.95 | 98.86 | **38.08** |
+| LPN (TCSVT'22) | 62.90 | 95.64 | **99.63** | 37.34 |
+| FSRA (TCSVT'21) | **65.37** | 95.94 | **99.63** | 37.49 |
+| CVCities (JSTARS'24) | 45.64 | 90.76 | 97.28 | 25.44 |
+| MCCG (TCSVT'24) | 56.18 | **96.32** | 99.21 | 32.54 |
+| Sample4Geo (ICCV'23) | 44.67 | 89.64 | 95.57 | 24.41 |
+| DAC (TCSVT'24) | 45.48 | 91.59 | 99.28 | 25.90 |
+| CAMP (TGRS'24) | 48.19 | 92.47 | 96.76 | 23.61 |
+| MFRGN (ACM MM'24) | 44.87 | 89.77 | 93.82 | 25.04 |
 
-> The highest R@1 of 43.64% is substantially lower than performance on existing benchmarks
+> The highest single-view R@1 of 44.08% (FSRA) is substantially lower than performance on existing benchmarks
 > such as University-1652 (60–80%), confirming that KoSim-GL presents a higher level of difficulty.
+> Multi-view fusion significantly improves R@1 up to 65.37%, demonstrating the value of the 5-camera platform.
 
 ---
 
@@ -127,7 +135,8 @@ If you use KoSim-GL in your research, please cite our paper:
   author  = {Ahn, Heejin and Lee, Changhwan and Lee, Sangwook and
              Seo, Minseok and Wi, HyeonJoong and Jang, Insung and
              Choi, Dong-geol},
-  journal = {IEEE Access},
+  journal = {Electronics},
+  publisher = {MDPI},
   year    = {2026}
 }
 ```
